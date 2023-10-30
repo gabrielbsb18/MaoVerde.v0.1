@@ -11,8 +11,12 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import Check from '../../../components/check.js';
+import {AuthContext} from '../../contexts/auth.js'
+import { useContext } from 'react';
 
 const Perfil = () => {
+  const {user, username} = useContext(AuthContext)
+
   const navigation = useNavigation();
 
   const handleNavCalender = () => {
@@ -40,7 +44,10 @@ const Perfil = () => {
         <View style={estilos.imagem01}>
           <Image source={require("../../../assets/Perfil.png")} />
           <Text style={{ marginTop: 13, fontSize: 26, color: "white" }}>
-            Polly Dias
+            {username.username}
+          </Text>
+          <Text style={{ marginTop: 5, fontSize: 17, color: "white" }}>
+            {user.email}
           </Text>
         </View>
 

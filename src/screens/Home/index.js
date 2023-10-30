@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import {AuthContext} from '../../contexts/auth'
 
 const data = [
   {
@@ -52,6 +53,8 @@ const data1 = [
 ];
 
 const Login = () => {
+  const{user, username}=useContext(AuthContext)
+
   const navigation = useNavigation();
 
   const handleNavRegister = () => {
@@ -91,8 +94,8 @@ const Login = () => {
           />
         </TouchableOpacity>
         <View style={{ justifyContent: "center" }}>
-          <Text style={styles.text}>Polly </Text>
-          <Text style={styles.text1}>Dias </Text>
+          <Text style={styles.text}>{username.username}</Text>
+          <Text style={styles.text1}>{user.email}</Text>
         </View>
         <Ionicons
           style={styles.notif}
@@ -176,7 +179,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: "#fff",
-    fontSize: 24,
+    fontSize: 17,
     marginLeft: 14,
   },
   Title: {
@@ -195,7 +198,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   notif: {
-    marginLeft: 200,
+    marginLeft: 'auto'
   },
   containerCard: {
     justifyContent: "center",
