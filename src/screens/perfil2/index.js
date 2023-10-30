@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   View,
   Image,
@@ -9,8 +9,11 @@ import {
 } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import {AuthContext} from '../../contexts/auth'
 
 const Perfil2 = () => {
+  const{user, username}=useContext(AuthContext)
+
   const navigation = useNavigation();
   const handleGoBack = () => {
     navigation.goBack();
@@ -29,7 +32,7 @@ const Perfil2 = () => {
         <View style={estilos.imagem01}>
           <Image source={require("../../../assets/Perfil.png")} />
           <Text style={{ marginTop: 13, fontSize: 26, color: "white" }}>
-            Polly Dias
+            {username.username}
           </Text>
         </View>
 

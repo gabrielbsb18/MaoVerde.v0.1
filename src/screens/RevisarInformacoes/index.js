@@ -43,7 +43,7 @@ const FormParticipacao = () => {
         <Text style={styles.input}>Não</Text>
       </View>
 
-      {/* Botão personalizado */}
+      
       <TouchableOpacity style={styles.customButton} onPress={handleNavConfirmado}>
         <Text style={styles.customButtonText}>Participar</Text>
       </TouchableOpacity>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   cardTitle: {
-    color: "#fff", // Altere para a cor desejada
+    color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
     paddingTop: 13,
