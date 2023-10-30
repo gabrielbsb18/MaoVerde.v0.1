@@ -16,6 +16,7 @@ Criamos um aplicativo que conecta pessoas interessadas em voluntariado ambiental
 
 Esse projeto foi desenvolvido com as seguinte tecnologia:
 
+- React Native
 - Figma
 
 ## 🔖 Layout
