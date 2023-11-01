@@ -17,7 +17,7 @@ const Login = () => {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Text style={styles.text}>Cide.</Text>
+        <Text style={styles.text}>Cuide.</Text>
         <Text style={styles.text}>Conserve.</Text>
         <Text style={styles.text}>Renove.</Text>
       </View>
