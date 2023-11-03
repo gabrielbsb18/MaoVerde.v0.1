@@ -34,10 +34,11 @@ const Perfil = () => {
     <SafeAreaView style={estilos.container}>
       <ScrollView>
         <TouchableOpacity onPress={handleGoBack}>
-          <Image
-            source={require('../../../assets/Voltar.png')}
-            style={{ alignItems: 'flex-end', marginLeft: 20 }}
-          />
+          <View style={{marginLeft: 20, marginTop: 20}}>
+            <Image
+              source={require('../../../assets/Voltar.png')}
+            />
+          </View>
         </TouchableOpacity>
 
 
@@ -140,8 +141,8 @@ const Perfil = () => {
             style={{
               backgroundColor: "white",
               borderRadius: 20,
-              width: 125,
-              height: 134,
+              flex: 1,
+              marginLeft: 10
             }}
           >
             <View
@@ -159,7 +160,7 @@ const Perfil = () => {
                 23
               </Text>
             </View>
-            <View style={{ width: 100, alignSelf: "center" }}>
+            <View style={{alignSelf: "center"}}>
               <View style={estilos02.calendario}>
                 <Text style={estilos02.texto01}>S</Text>
                 <Text style={estilos02.texto01}>T</Text>
@@ -235,7 +236,7 @@ const Perfil = () => {
           onPress={() => handleNavSair()}
         >
           <View style={estilos.botao}>
-            <Text style={{ color: 'white', margin: 5 }}>Sair</Text>
+            <Text style={{ color: 'white', margin: 10 }}>Sair</Text>
             <Ionicons name="exit-outline" size={24} color="white" />
           </View>
         </TouchableOpacity>
@@ -256,31 +257,26 @@ const estilos = StyleSheet.create({
   botao: {
     backgroundColor: "rgba(25, 144, 51, 0.51)",
     alignItems: "center",
-    alignSelf: "center",
     flexDirection: "row",
     justifyContent: "center",
-    borderRadius: 10,
-    width: 380,
-    height: 35,
+    borderRadius: 20,
   },
 });
 
 const estilos01 = StyleSheet.create({
   box: {
-    alignSelf: "center",
+    alignSelf: "stretch",
     backgroundColor: "rgba(55, 72, 56, 0.18)",
     marginTop: 10,
-    width: 380,
     borderRadius: 20,
+
   },
   box2: {
     flexDirection: "row",
-    alignSelf: "center",
+    alignSelf: "stretch",
     justifyContent: "space-between",
     backgroundColor: "rgba(25, 144, 51, 0.51)",
     marginTop: 20,
-    width: 380,
-    height: 80,
     borderRadius: 20,
   },
   box3: {
@@ -293,14 +289,14 @@ const estilos02 = StyleSheet.create({
   box: {
     marginTop: 15,
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 15,
+    justifyContent: "space-around",
+    flex: 1
   },
   box1: {
     backgroundColor: "white",
-    width: 225,
     borderRadius: 20,
-    height: 134,
+    flex: 2
+
   },
   box1_1: {
     backgroundColor: "white",
@@ -314,7 +310,6 @@ const estilos02 = StyleSheet.create({
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    height: 30,
     marginTop: 6,
     marginLeft: 6,
     marginRight: 6,
@@ -339,8 +334,9 @@ const estilos02 = StyleSheet.create({
   },
   calendario: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginBottom: 5,
+    width: '90%'
   },
   texto01: {
     fontSize: 6,
@@ -348,7 +344,7 @@ const estilos02 = StyleSheet.create({
   },
   texto02_2: {
     fontSize: 50,
-    marginTop: -17,
+    marginTop: -25,
   },
 });
 
