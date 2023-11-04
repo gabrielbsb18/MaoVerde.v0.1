@@ -17,11 +17,14 @@ const Login = () => {
   };
 
   return (
-    <>
+    <ScrollView>
+    
     <ImageBackground
       source={require("../../../assets/Backgrund.png")}
       style={styles.background}
     >
+      
+      
       <View style={styles.container}>
         <Text style={styles.text}>Cide.</Text>
         <Text style={styles.text}>Conserve.</Text>
@@ -48,9 +51,10 @@ const Login = () => {
             onPress={() => handleNavRegister()}
           />
         </View>
-      </ScrollView>
+      
     </ImageBackground>
-    </>
+    </ScrollView>
+    
   );
 };
 
