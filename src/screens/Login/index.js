@@ -18,43 +18,41 @@ const Login = () => {
 
   return (
     <ScrollView>
-    
     <ImageBackground
       source={require("../../../assets/Backgrund.png")}
       style={styles.background}
     >
-      
-      
       <View style={styles.container}>
-        <Text style={styles.text}>Cide.</Text>
+        <Text style={styles.text}>Cuide.</Text>
         <Text style={styles.text}>Conserve.</Text>
         <Text style={styles.text}>Renove.</Text>
       </View>
 
-        <View>
-          <Button
-            title="Get Started"
-            loading={false}
-            loadingProps={{ size: "small", color: "white" }}
-            buttonStyle={{
-              backgroundColor: "rgba(25, 144, 51, 0.51)",
-              borderRadius: 5,
-              margin: "auto",
-            }}
-            titleStyle={{ fontWeight: "bold", fontSize: 23 }}
-            containerStyle={{
-              marginVertical: 280,
-              margin: 50,
-              display: "flex",
-              justifyContent: "center",
-            }}
-            onPress={() => handleNavRegister()}
-          />
-        </View>
-      
+      <View>
+        <Button
+          title="Get Started"
+          loading={false}
+          loadingProps={{ size: "small", color: "white" }}
+          buttonStyle={{
+            backgroundColor: "rgba(25, 144, 51, 0.51)",
+            borderRadius: 5,
+            margin:'auto'
+          }}
+          titleStyle={{ fontWeight: "bold", fontSize: 23 }}
+          containerStyle={{
+            height: '10vh',
+            width: '80vw',
+            marginVertical: 400,
+            margin: 50,
+           display:'flex'
+
+            
+          }}
+          onPress={() => handleNavRegister()}
+        />
+      </View>
     </ImageBackground>
     </ScrollView>
-    
   );
 };
 
