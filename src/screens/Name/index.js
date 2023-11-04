@@ -7,10 +7,6 @@ import { Input } from "@rneui/themed";
 const New = () => {
   const navigation = useNavigation();
 
-  const handleNavRegister = () => {
-    navigation.navigate("Home");
-  };
-
   const handName = () => {
     navigation.navigate("DataNasc");
   };
@@ -23,7 +19,7 @@ const New = () => {
       <View style={styles.container}>
         <Text style={styles.text}>Qual seu nome completo?</Text>
         <Input
-          containerStyle={{ width: "85%", marginTop: 220 }}
+          containerStyle={{ width: "80%" }}
           style={{ color: "white" }}
           placeholder="Seu Nome"
         />
@@ -32,15 +28,13 @@ const New = () => {
           loading={false}
           loadingProps={{ size: "small", color: "white" }}
           buttonStyle={{
-            backgroundColor: "rgba(25, 144, 51, 51)",
+            backgroundColor: "rgba(25, 144, 51, 0.51)",
             borderRadius: 5,
           }}
           titleStyle={{ fontWeight: "bold", fontSize: 23 }}
           containerStyle={{
             marginHorizontal: 15,
-            height: 72,
             width: 300,
-            marginVertical: 0,
           }}
           onPress={() => handName()}
         />
@@ -58,9 +52,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 100,
-    paddingLeft: 42,
     backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     color: "#fff",
@@ -68,8 +62,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontWeight: "bold",
     fontSize: 24,
-    margin: 13,
-    width: 280,
+    width: 300,
   },
 });
 

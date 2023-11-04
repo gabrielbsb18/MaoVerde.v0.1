@@ -73,6 +73,7 @@ const ParticipacoesConfirmadas = () => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop:35,
     flex: 1,
     backgroundColor: "#132815",
   },

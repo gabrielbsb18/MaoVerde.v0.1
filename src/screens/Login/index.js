@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground,ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
@@ -17,7 +23,7 @@ const Login = () => {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Text style={styles.text}>Cide.</Text>
+        <Text style={styles.text}>Cuide.</Text>
         <Text style={styles.text}>Conserve.</Text>
         <Text style={styles.text}>Renove.</Text>
       </View>
