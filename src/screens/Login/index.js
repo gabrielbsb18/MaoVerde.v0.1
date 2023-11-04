@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground,ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,7 +17,7 @@ const Login = () => {
   };
 
   return (
-    <ScrollView>
+    <>
     <ImageBackground
       source={require("../../../assets/Backgrund.png")}
       style={styles.background}
@@ -22,31 +28,29 @@ const Login = () => {
         <Text style={styles.text}>Renove.</Text>
       </View>
 
-      <View>
-        <Button
-          title="Get Started"
-          loading={false}
-          loadingProps={{ size: "small", color: "white" }}
-          buttonStyle={{
-            backgroundColor: "rgba(25, 144, 51, 0.51)",
-            borderRadius: 5,
-            margin:'auto'
-          }}
-          titleStyle={{ fontWeight: "bold", fontSize: 23 }}
-          containerStyle={{
-            height: '10vh',
-            width: '80vw',
-            marginVertical: 400,
-            margin: 50,
-           display:'flex'
-
-            
-          }}
-          onPress={() => handleNavRegister()}
-        />
-      </View>
+        <View>
+          <Button
+            title="Get Started"
+            loading={false}
+            loadingProps={{ size: "small", color: "white" }}
+            buttonStyle={{
+              backgroundColor: "rgba(25, 144, 51, 0.51)",
+              borderRadius: 5,
+              margin: "auto",
+            }}
+            titleStyle={{ fontWeight: "bold", fontSize: 23 }}
+            containerStyle={{
+              marginVertical: 280,
+              margin: 50,
+              display: "flex",
+              justifyContent: "center",
+            }}
+            onPress={() => handleNavRegister()}
+          />
+        </View>
+      </ScrollView>
     </ImageBackground>
-    </ScrollView>
+    </>
   );
 };
 

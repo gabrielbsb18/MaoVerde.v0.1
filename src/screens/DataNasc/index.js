@@ -7,10 +7,6 @@ import { Input } from "@rneui/themed";
 const DataNasc = () => {
   const navigation = useNavigation();
 
-  const handleNavRegister = () => {
-    navigation.navigate("Home");
-  };
-
   const Estado = () => {
     navigation.navigate("Estado");
   };
@@ -23,7 +19,7 @@ const DataNasc = () => {
       <View style={styles.container}>
         <Text style={styles.text}>Qual sua data de nascimento?</Text>
         <Input
-          containerStyle={{ width: "85%", marginTop: 220 }}
+          containerStyle={{ width: "80%" }}
           style={{ color: "white" }}
           placeholder="DD/MM/AAAA"
         />
@@ -32,7 +28,7 @@ const DataNasc = () => {
           loading={false}
           loadingProps={{ size: "small", color: "white" }}
           buttonStyle={{
-            backgroundColor: "rgba(25, 144, 51, 51)",
+            backgroundColor: "rgba(25, 144, 51, 0.51)",
             borderRadius: 5,
           }}
           titleStyle={{ fontWeight: "bold", fontSize: 23 }}
@@ -40,7 +36,6 @@ const DataNasc = () => {
             marginHorizontal: 15,
             height: 72,
             width: 300,
-            marginVertical: 0,
           }}
           onPress={() => Estado()}
         />
@@ -58,9 +53,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 100,
-    paddingLeft: 42,
     backgroundColor: "transparent",
+    justifyContent:'center',
+    alignItems:'center'
   },
   text: {
     color: "#fff",
@@ -68,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontWeight: "bold",
     fontSize: 24,
-    margin: 13,
+    width: 300,
   },
 });
 
