@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     fontFamily: "",
     fontSize: 48,
     backgroundColor: "#132815",
-    alignItems: "flex-start",
   },
   text: {
     color: "#fff",
@@ -121,15 +120,17 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     marginTop: 15,
     fontWeight:"bold",
+    alignSelf: 'stretch'
   },
   input: {
     color: "white",
     paddingLeft: 8,
     height: 40,
     marginLeft: 14,
+    alignSelf: 'stretch'
   },
   form: {
-    width: 380,
+    alignSelf: 'stretch'
   },
   customButton: {
     backgroundColor: "green",
@@ -137,9 +138,9 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     marginTop: 35,
-    width: 111,
-    height: 38,
-    marginLeft: 250,
+    marginRight: 15,
+    marginBottom: 15,
+    alignSelf: 'flex-end'
   },
   customButtonText: {
     color: "#fff",

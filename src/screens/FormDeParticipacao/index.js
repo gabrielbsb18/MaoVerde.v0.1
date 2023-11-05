@@ -30,37 +30,39 @@ const FormParticipacao = () => {
           pessoais:
         </Text>
         <Text style={styles.textInput}>Nome Completo</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu nome"
-          placeholderTextColor="white"
-        />
+        <View style={{alignSelf: 'stretch'}}>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite seu nome"
+            placeholderTextColor="white"
+          />
+        </View>
         <Text style={styles.textInput}>Número para Contato</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="(00)00000-0000"
-          placeholderTextColor="white"
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="(00)00000-0000"
+            placeholderTextColor="white"
+          />
         <Text style={styles.textInput}>Número de Documento RG ou CPF</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="000000000000"
-          placeholderTextColor="white"
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="000000000000"
+            placeholderTextColor="white"
+          />
         <Text style={styles.textInput}>Endereço Residencial </Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Q 00 conj 00 casa 00,  Cidade - DF"
-          placeholderTextColor="white"
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="Q 00 conj 00 casa 00,  Cidade - DF"
+            placeholderTextColor="white"
+          />
         <Text style={styles.textInput}>
           Você tem alguma restrição dietética?
         </Text>
-        <TextInput
-          style={styles.input}
-          placeholder=""
-          placeholderTextColor="white"
-        />
+          <TextInput
+            style={styles.input}
+            placeholder=""
+            placeholderTextColor="white"
+          />
       </View>
 
       {/* Botão personalizado */}
@@ -79,7 +81,6 @@ const styles = StyleSheet.create({
     fontFamily: "",
     fontSize: 48,
     backgroundColor: "#132815",
-    alignItems: "flex-start",
   },
   text: {
     color: "#fff",
@@ -148,30 +149,31 @@ const styles = StyleSheet.create({
   textInput: {
     color: "white",
     marginBottom: 8,
-    marginLeft: 14,
+    marginHorizontal: 14,
     marginTop: 15,
   },
   input: {
+    alignSelf: 'stretch',
     color: "white",
     borderColor: "white",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
     paddingLeft: 8,
     height: 40,
-    marginLeft: 14,
+    marginHorizontal: 14,
   },
   form: {
-    width: 380,
+    alignItems: 'stretch'
   },
   customButton: {
     backgroundColor: "green",
     borderRadius: 15,
     padding: 10,
     alignItems: "center",
+    alignSelf: 'flex-end',
     marginTop: 35,
-    width: 111,
-    height: 38,
-    marginLeft: 20,
+    marginRight: 15,
+    marginBottom: 15,
   },
   customButtonText: {
     color: "#fff",
