@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     paddingTop: 1,
     width: 144,
     height: 255,
-
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
@@ -163,37 +162,37 @@ const styles = StyleSheet.create({
     paddingTop: 1,
     width: 100,
     height: 120,
-
     alignItems: "center",
     justifyContent: "center",
   },
   textInput: {
     color: "white",
     marginBottom: 8,
-    marginLeft: 14,
+    marginHorizontal: 14,
     marginTop: 15,
   },
   input: {
+    alignSelf: 'stretch',
     color: "white",
     borderColor: "white",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
     paddingLeft: 8,
     height: 40,
-    marginLeft: 14,
+    marginHorizontal: 14,
   },
   form: {
-    width: 380,
+    alignItems: 'stretch'
   },
   customButton: {
     backgroundColor: "green",
     borderRadius: 15,
     padding: 10,
     alignItems: "center",
+    alignSelf: 'flex-end',
     marginTop: 35,
-    width: 111,
-    height: 38,
-    marginLeft: 20,
+    marginRight: 15,
+    marginBottom: 15,
   },
   customButtonText: {
     color: "#fff",
