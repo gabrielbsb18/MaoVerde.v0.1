@@ -5,25 +5,44 @@ import {
   ImageBackground,
   ScrollView,
   SafeAreaView,
+  Text,
 } from "react-native";
-import { Button } from "@rneui/themed";
+import { Button, Input } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
-import { Input } from "@rneui/themed";
 import { AuthContext } from "../../contexts/auth";
+import * as yup from "yup";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-export default function  Home  () {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+const validationSchema = yup.object().shape({
+  username: yup.string().required("Campo obrigatório"),
+  email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
+  password: yup
+    .string()
+    .min(6, "A senha deve conter pelo menos 6 digitos")
+    .required("Informe sua senha"),
+});
 
+export default function Home() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const { signIn } = useContext(AuthContext);
-
   const navigation = useNavigation();
 
-  function handleNavRegister() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  function handleNavRegister(data) {
+    const { email, password, username } = data;
     signIn(email, password, username);
-  }  
+  }
 
   const handNewUser = () => {
     navigation.navigate("New");
@@ -37,29 +56,60 @@ export default function  Home  () {
       <SafeAreaView>
         <ScrollView>
           <View style={styles.container}>
-           <Input
-              containerStyle={{ width: "80%" }}
-              style={{ color: "white" }}
-              placeholder="Seu username"
-              value={username}
-              onChangeText={(text => setUsername(text))}
-            /> 
-            <Input
-              containerStyle={{ width: "80%" }}
-              style={{ color: "white" }}
-              placeholder="E-mail"
-              value={email}
-              onChangeText={(text => setEmail(text))}
+            <Controller
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <Input
+                  containerStyle={{ width: "80%" }}
+                  style={{ color: "white" }}
+                  placeholder="Seu username"
+                  value={value}
+                  onChangeText={onChange}
+                />
+              )}
+              name="username"
+              defaultValue={username}
             />
+            {errors.username && (
+              <Text style={{ color: "red" }}>{errors.username.message}</Text>
+            )}
 
-            <Input
-              containerStyle={{ width: "80%" }}
-              style={{ color: "white" }}
-              placeholder="Senha"
-              secureTextEntry={true}
-              value={password}
-              onChangeText={(text)=>setPassword(text)}
+            <Controller
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <Input
+                  containerStyle={{ width: "80%" }}
+                  style={{ color: "white" }}
+                  placeholder="E-mail"
+                  value={value}
+                  onChangeText={onChange}
+                />
+              )}
+              name="email"
+              defaultValue={email}
             />
+            {errors.email && (
+              <Text style={{ color: "red" }}>{errors.email.message}</Text>
+            )}
+
+            <Controller
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <Input
+                  containerStyle={{ width: "80%" }}
+                  style={{ color: "white" }}
+                  placeholder="Senha"
+                  value={value}
+                  onChangeText={onChange}
+                  secureTextEntry={true}
+                />
+              )}
+              name="password"
+              defaultValue={password}
+            />
+            {errors.password && (
+              <Text style={{ color: "red" }}>{errors.password?.message}</Text>
+            )}
           </View>
 
           <View>
@@ -77,7 +127,7 @@ export default function  Home  () {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-              onPress={() => handleNavRegister()}
+              onPress={handleSubmit(handleNavRegister)}
             />
             <Button
               title="Cadastrar"
@@ -94,14 +144,14 @@ export default function  Home  () {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-              onPress={() => handNewUser()}
+              onPress={handNewUser}
             />
           </View>
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );
-};
+}
 
 const styles = StyleSheet.create({
   background: {
@@ -117,5 +167,3 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
 });
-
-
