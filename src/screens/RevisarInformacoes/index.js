@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext}from "react";
 import { View, Text, StyleSheet, Image, TextInput, ScrollView } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -7,7 +7,10 @@ import { TouchableOpacity } from "react-native";
 
 import {} from "../DetalhesCard";
 
+import {FormContext} from '../../contexts/form'
+
 const FormParticipacao = () => {
+  const {user} =useContext(FormContext)
   const navigation = useNavigation("");
 
   const handleNavConfirmado = () => {
@@ -29,18 +32,18 @@ const FormParticipacao = () => {
         Revise suas Informações
         </Text>
         <Text style={styles.textInput}>Nome Completo</Text>
-        <Text style={styles.input}>Pollyana Ferreira Dias</Text>
+        <Text style={styles.input}>{user.nome}</Text>
         <Text style={styles.textInput}>Número para Contato</Text>
-        <Text style={styles.input}>(00)12345-6789</Text>
+        <Text style={styles.input}>{user.tel}</Text>
         <Text style={styles.textInput}>Número de Documento RG ou CPF</Text>
-        <Text style={styles.input}>33333333</Text>
+        <Text style={styles.input}>{user.doc}</Text>
         <Text style={styles.textInput}>Endereço Residencial </Text>
-        <Text style={styles.input}> Q 00 conj 00 casa 00, Cidade - DF</Text>
+        <Text style={styles.input}> {user.endereco}</Text>
 
         <Text style={styles.textInput}>
           Você tem alguma restrição dietética?
         </Text>
-        <Text style={styles.input}>Não</Text>
+        <Text style={styles.input}>{user.restricao}</Text>
       </View>
 
       
