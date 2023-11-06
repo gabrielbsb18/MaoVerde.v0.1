@@ -40,8 +40,8 @@ const Login = () => {
           }}
           titleStyle={{ fontWeight: "bold", fontSize: 23 }}
           containerStyle={{
-            height: '10vh',
-            width: '80vw',
+            height: '10%',
+            width: '80%',
             marginVertical: 400,
             margin: 50,
            display:'flex'
