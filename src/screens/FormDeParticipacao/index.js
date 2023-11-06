@@ -24,7 +24,7 @@ const FormParticipacao = () => {
     } else if (!documento || !/^\d{11}$/.test(documento)) {
       setErro('Por favor, insira um Número de Documento válido no formato 000000000000.');
     } else if (!endereco) {
-      setErro('Por favor, insira seu Endereço Residencial.');
+      setErro('Por gentileza, insira seu Endereço Residencial.');
     } else if (!restricaoDietetica) {
       setErro('Por favor, informe sua Restrição Dietética.');
     } else {
