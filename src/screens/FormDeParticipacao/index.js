@@ -27,7 +27,7 @@ const FormParticipacao = () => {
 
   const handleNavRevisar = () => {
     if (!nome || nome.trim() === "") {
-      Alert.alert("Erro", "Por favor, insira seu Nome Completo.");
+      Alert.alert("Erro", "Por favor, insira seu Nome Completo."); // teste 
       return;
     }
 
