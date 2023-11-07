@@ -26,36 +26,20 @@ const FormParticipacao = () => {
   const navigation = useNavigation();
 
   const handleNavRevisar = () => {
-    if (!nome || nome.trim() === "") {
-      Alert.alert("Erro", "Por favor, insira seu Nome Completo"); // teste 
-      return;
+    if (!nome) {
+      setErro('Por favor, insira seu Nome Completo.');
+    } else if (!telefone || !/^\d{11}$/.test(telefone)) {
+      setErro('Por favor, insira um Número para Contato válido no formato 00000000000.');
+    } else if (!documento || !/^\d{11}$/.test(documento)) {
+      setErro('Por favor, insira um Número de Documento válido no formato 000000000000.');
+    } else if (!endereco) {
+      setErro('Por gentileza, insira seu Endereço Residencial.');
+    } else if (!restricaoDietetica) {
+      setErro('Por favor, informe sua Restrição Dietética.');
+    } else {
+      setErro('');
+      navigation.navigate("RevisaoInformacao");
     }
-
-    if (!tel || !/^\d{11}$/.test(tel)) {
-      Alert.alert(
-        "Erro",
-        "Por favor, insira um Número para Contato válido no formato 00000000000."
-      );
-      return;
-    }
-
-    if (!doc || !/^\d{11}$/.test(doc)) {
-      Alert.alert(
-        "Erro",
-        "Por favor, insira um Número de CPF válido no formato 00000000000."
-      );
-      return;
-    }
-
-    if (!endereco || endereco.trim() === "") {
-      Alert.alert("Erro", "Por favor, insira seu Endereço Residencial.");
-      return;
-    }
-
-    // Restrição Dietética não é obrigatória, portanto não é validada
-
-    Cadastro(nome, tel, doc, endereco);
-    navigation.navigate("RevisaoInformacao");
   };
 
 
