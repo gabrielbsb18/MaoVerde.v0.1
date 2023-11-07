@@ -6,43 +6,29 @@ import {
   Image,
   TextInput,
   ScrollView,
-  Alert,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
-import { FormContext } from "../../contexts/form";
+import {FormContext} from '../../contexts/form'
+
+import {} from "../DetalhesCard";
 
 const FormParticipacao = () => {
-  const [nome, setNome] = useState("");
-  const [tel, setTel] = useState("");
-  const [doc, setDoc] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [restricao, setRestricao] = useState("");
+  const[nome, setNome]=useState("")
+  const[tel, setTel]=useState("")
+  const[doc, setDoc]=useState("")
+  const[endereco, setEndereco]=useState("")
+  const[restricao, setRestricao]=useState("")
 
-  const { Cadastro } = useContext(FormContext);
+  
 
-  const navigation = useNavigation();
+  const {Cadastro} =useContext(FormContext)
 
-  const handleNavRevisar = () => {
-    if (!nome) {
-      setErro('Por favor, insira seu Nome Completo.');
-    } else if (!telefone || !/^\d{11}$/.test(telefone)) {
-      setErro('Por favor, insira um Número para Contato válido no formato 00000000000.');
-    } else if (!documento || !/^\d{11}$/.test(documento)) {
-      setErro('Por favor, insira um Número de Documento válido no formato 000000000000.');
-    } else if (!endereco) {
-      setErro('Por gentileza, insira seu Endereço Residencial.');
-    } else if (!restricaoDietetica) {
-      setErro('Por favor, informe sua Restrição Dietética.');
-    } else {
-      setErro('');
-      navigation.navigate("RevisaoInformacao");
-    }
+  function handleNavRevisar(){
+    Cadastro(nome, tel, doc, endereco)
   };
-
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -82,7 +68,7 @@ const FormParticipacao = () => {
             placeholderTextColor="white"
           />
 
-          <Text style={styles.textInput}>Número do CPF</Text>
+          <Text style={styles.textInput}>Número de Documento RG ou CPF</Text>
           <TextInput
             style={styles.input}
             value={doc}
@@ -125,6 +111,9 @@ const FormParticipacao = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    resizeMode: "cover",
+    fontFamily: "",
+    fontSize: 48,
     backgroundColor: "#132815",
   },
   text: {
@@ -156,6 +145,7 @@ const styles = StyleSheet.create({
     paddingTop: 1,
     width: 144,
     height: 255,
+
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
@@ -166,7 +156,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   cardTitle: {
-    color: "#fff",
+    color: "#fff", // Altere para a cor desejada
     fontSize: 16,
     fontWeight: "bold",
     paddingTop: 13,
@@ -186,6 +176,7 @@ const styles = StyleSheet.create({
     paddingTop: 1,
     width: 100,
     height: 120,
+
     alignItems: "center",
     justifyContent: "center",
   },
@@ -196,7 +187,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   input: {
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
     color: "white",
     borderColor: "white",
     borderWidth: 1,
@@ -206,14 +197,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 14,
   },
   form: {
-    alignItems: 'stretch'
+    alignItems: "stretch",
   },
   customButton: {
     backgroundColor: "green",
     borderRadius: 15,
     padding: 10,
     alignItems: "center",
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     marginTop: 35,
     marginRight: 15,
     marginBottom: 15,
@@ -222,10 +213,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
-  },
-  erroText: {
-    color: "red",
-    marginLeft: 14,
   },
 });
 
