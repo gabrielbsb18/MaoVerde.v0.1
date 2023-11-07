@@ -6,29 +6,59 @@ import {
   Image,
   TextInput,
   ScrollView,
+  Alert,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
-import {FormContext} from '../../contexts/form'
-
-import {} from "../DetalhesCard";
+import { FormContext } from "../../contexts/form";
 
 const FormParticipacao = () => {
-  const[nome, setNome]=useState("")
-  const[tel, setTel]=useState("")
-  const[doc, setDoc]=useState("")
-  const[endereco, setEndereco]=useState("")
-  const[restricao, setRestricao]=useState("")
+  const [nome, setNome] = useState("");
+  const [tel, setTel] = useState("");
+  const [doc, setDoc] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [restricao, setRestricao] = useState("");
 
-  
+  const { Cadastro } = useContext(FormContext);
 
-  const {Cadastro} =useContext(FormContext)
+  const navigation = useNavigation();
 
-  function handleNavRevisar(){
-    Cadastro(nome, tel, doc, endereco)
+  const handleNavRevisar = () => {
+    if (!nome || nome.trim() === "") {
+      Alert.alert("Erro", "Por favor, insira seu Nome Completo.");
+      return;
+    }
+
+    if (!tel || !/^\d{11}$/.test(tel)) {
+      Alert.alert(
+        "Erro",
+        "Por favor, insira um Número para Contato válido no formato 00000000000."
+      );
+      return;
+    }
+
+    if (!doc || !/^\d{11}$/.test(doc)) {
+      Alert.alert(
+        "Erro",
+        "Por favor, insira um Número de CPF válido no formato 00000000000."
+      );
+      return;
+    }
+
+    if (!endereco || endereco.trim() === "") {
+      Alert.alert("Erro", "Por favor, insira seu Endereço Residencial.");
+      return;
+    }
+
+    // Restrição Dietética não é obrigatória, portanto não é validada
+
+    Cadastro(nome, tel, doc, endereco);
+    navigation.navigate("RevisaoInformacao");
   };
+
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -68,7 +98,7 @@ const FormParticipacao = () => {
             placeholderTextColor="white"
           />
 
-          <Text style={styles.textInput}>Número de Documento RG ou CPF</Text>
+          <Text style={styles.textInput}>Número do CPF</Text>
           <TextInput
             style={styles.input}
             value={doc}
@@ -111,9 +141,6 @@ const FormParticipacao = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    resizeMode: "cover",
-    fontFamily: "",
-    fontSize: 48,
     backgroundColor: "#132815",
   },
   text: {
@@ -156,7 +183,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   cardTitle: {
-    color: "#fff", // Altere para a cor desejada
+    color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
     paddingTop: 13,
@@ -213,6 +240,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  erroText: {
+    color: "red",
+    marginLeft: 14,
   },
 });
 
