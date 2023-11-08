@@ -1,41 +1,26 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { Input } from "@rneui/themed";
-import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const validationSchema = yup.object().shape({
-  datanasc: yup.string().min(8, "A data deve conter DD/MM/AAAA").required("Campo obrigatório"),
-})
+  datanasc: yup.string().matches(/^\d{2}\/\d{2}\/\d{4}$/, "Formato inválido (DD/MM/AAAA)").required("Campo obrigatório"),
+});
 
 const DataNasc = () => {
-  const [data, setData] = useState("")
   const navigation = useNavigation();
-
-  const Estado = () => {
-    navigation.navigate("Estado");
-  };
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
-  const handleNavRegister = ()=> {
-    if (!value || !/^\d{8}$/.test(value)) {
-      Alert.alert(
-        "Erro",
-        "Por favor, insira a data de nascimento válido no formato DD/MM/AAAA."
-      );
-      return;
-    }
-  }
+  const handleEstado = () => {
+    // Navegue para a próxima tela ou execute ação necessária.
+    navigation.navigate("Estado");
+  };
 
   return (
     <ImageBackground
@@ -50,16 +35,16 @@ const DataNasc = () => {
             <Input
               containerStyle={{ width: "80%" }}
               style={{ color: "white" }}
+              placeholder="DD/MM/AAAA"
               value={value}
               onChangeText={onChange}
-              placeholder="DD/MM/AAAA"
             />
           )}
-          name="data"
-          defaultValue={data}
+          name="datanasc"
+          defaultValue=""
         />
 
-        {errors.data && (<Text style={{ color: "red" }}> {erros.data.message} </Text>)}
+        {errors.datanasc && (<Text style={{ color: "red" }}> {errors.datanasc.message} </Text>)}
 
         <Button
           title="Continuar"
@@ -75,7 +60,7 @@ const DataNasc = () => {
             height: 72,
             width: 300,
           }}
-          onPress={handleSubmit(Estado)}
+          onPress={handleSubmit(handleEstado)}
         />
       </View>
     </ImageBackground>
@@ -92,8 +77,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "transparent",
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     color: "#fff",
