@@ -3,26 +3,49 @@ import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { Input } from "@rneui/themed";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const Estado = () => {
+const validationSchema = yup.object().shape({
+  contato: yup.string().matches(/^\(\+\d{2}\) \(\d{2}\) \d{5}-\d{4}$/, "Formato inválido").required("Campo obrigatório"),
+});
+
+const Contato = () => {
   const navigation = useNavigation();
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
-  const CadConf = () => {
+  const handleCadConf = () => {
+   
     navigation.navigate("CadConf");
   };
 
   return (
     <ImageBackground
-      source={require("../../../assets/Backgrund.png")}  
+      source={require("../../../assets/Backgrund.png")}
       style={styles.background}
     >
       <View style={styles.container}>
         <Text style={styles.text}>Qual seu número para contato?</Text>
-        <Input
-          containerStyle={{ width: "85%"}}
-          style={{ color: "white" }}
-          placeholder="(+55) (00) 00000-0000"
+        <Controller
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <Input
+              containerStyle={{ width: "85%" }}
+              style={{ color: "white" }}
+              placeholder="(+55) (00) 00000-0000"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+          name="contato"
+          defaultValue=""
         />
+        {errors.contato && (
+          <Text style={{ color: "red" }}>{errors.contato.message}</Text>
+        )}
         <Button
           title="Continuar"
           loading={false}
@@ -35,7 +58,7 @@ const Estado = () => {
           containerStyle={{
             width: 310,
           }}
-          onPress={() => CadConf()}
+          onPress={handleSubmit(handleCadConf)}
         />
       </View>
     </ImageBackground>
@@ -65,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Estado;
+export default Contato;
