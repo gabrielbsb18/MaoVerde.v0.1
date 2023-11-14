@@ -1,12 +1,18 @@
+import React, { useState, useContext } from "react";
 import {View, SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, ScrollView} from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
+import { CardContext } from '../../contexts/card';
 
 const DetalhesConfirmados1 = () => {
+    const {card, setCard} = useContext(CardContext)
+    const {click} = useContext(CardContext)
+
     const navigation = useNavigation();
 
     const Cancelar = () => {
       navigation.navigate("Cancelado");
+      click()
     };
 
     const handleGoBack = () => {
@@ -41,8 +47,8 @@ const DetalhesConfirmados1 = () => {
                         <Image style={{width: 280}} source={require('../../../assets/Mapa.png')} resizeMode="contain"/>
                     </View>
                 </View>
-
-                <TouchableOpacity style={{marginTop: 70}} onPress={() => Cancelar()}>
+{/*                 <TouchableOpacity style={{marginTop: 70}} onPress={() => Cancelar()}>*/}
+                <TouchableOpacity onPress={Cancelar}>
                     <View style={styles.botao}>
                         <Text style={{ color: 'white', margin:1}}>Cancelar Participação</Text>
                     </View>

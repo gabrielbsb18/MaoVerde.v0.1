@@ -1,4 +1,5 @@
-import React, {useContext} from "react";
+import React from 'react'
+import {useContext} from "react";
 import {
   View,
   Text,
@@ -12,6 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import {AuthContext} from '../../contexts/auth'
+import { CardContext } from '../../contexts/card';
 
 const ParticipacoesConfirmadas = () => {
   const { user, username } = useContext(AuthContext);
@@ -29,11 +31,16 @@ const ParticipacoesConfirmadas = () => {
     navigation.navigate("Home");
   };
 
+  const {card, setCard} = useContext(CardContext)
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={{ marginHorizontal: 25 }}>
-          <View style={styles.box1}>
+          <View style={{flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            }} >
             <TouchableOpacity style={styles.box1_2}>
               <Image source={require("../../../assets/Perfil.png")} />
               <View style={{ justifyContent: "center" }}>
@@ -46,25 +53,29 @@ const ParticipacoesConfirmadas = () => {
             </TouchableOpacity>
           </View>
 
-          {/* <View style={styles.box2}>
-                    <Text style={{fontSize: 20, color: 'white', marginLeft:15}}>Confirmações</Text>
-                </View>
+           <View style={styles.box2}>
+              <Text style={{fontSize: 20, color: 'white', marginLeft:15}}>Comfimações</Text>
+            </View>
 
-                <TouchableOpacity style={styles.box3} onPress={() => hanDetalhes()}>
+                <TouchableOpacity style={card} onPress={() => hanDetalhes()}>
                     <Image style={styles.box3_1} source={require('../../../assets/Box3_Background.png')}/>
-                    <Text style={{color: 'white', fontSize: 20, position: 'absolute', top: 110, left: -20}}>Prevênção de Incêndio</Text>
-                    <Text style={{color: 'white', fontSize: 10, position: 'absolute', top: 138, left: -20}}>27, Ago, 12h </Text>
+                    <View style={styles.box3_2}>
+                      <Text style={{color: 'white', fontSize: 20}}>Prevênção de Incêndio</Text>
+                      <Text style={{color: 'white', fontSize: 10}}>27, Ago, 12h </Text>
+                    </View>
                 </TouchableOpacity>
 
                 <View style={styles.box2}>
                     <Text style={{fontSize: 20, color: 'white', marginLeft:15}}>Feedback</Text>
                 </View>
 
-                <TouchableOpacity style={styles.box3} onPress={() => hanFeedback()}>
+                <TouchableOpacity style={card} onPress={() => hanFeedback()}>
                     <Image style={styles.box3_1} source={require('../../../assets/Box3_Background.png')}/>
-                    <Text style={{color: 'white', fontSize: 20, position: 'absolute', top: 110, left: -20}}>Prevênção de Incêndio</Text>
-                    <Text style={{color: 'white', fontSize: 10, position: 'absolute', top: 138, left: -20}}>27, Ago, 12h </Text>
-                </TouchableOpacity> */}
+                    <View style={styles.box3_2}>
+                      <Text style={{color: 'white', fontSize: 20}}>Prevênção de Incêndio</Text>
+                      <Text style={{color: 'white', fontSize: 10}}>27, Ago, 12h </Text>
+                    </View>
+                </TouchableOpacity> 
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -90,13 +101,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   box2: {
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 10,
   },
   box3: {
     alignItems: "center",
     borderRadius: 40,
-    marginHorizontal: 40,
   },
   box3_1: {
     borderRadius: 25,
@@ -105,8 +115,11 @@ const styles = StyleSheet.create({
     height: 180,
   },
   box3_1_1: {
-    position: "absolute",
-    top: 500,
+    
+  },
+  box3_2: {
+    alignSelf: 'flex-start',
+    marginTop: -60
   },
   text: {
     color: "#fff",
