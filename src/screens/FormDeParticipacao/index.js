@@ -68,7 +68,7 @@ const FormParticipacao = () => {
             placeholderTextColor="white"
           />
 
-          <Text style={styles.textInput}>Número de Documento RG ou CPF</Text>
+          <Text style={styles.textInput}>Número do CPF</Text>
           <TextInput
             style={styles.input}
             value={doc}
