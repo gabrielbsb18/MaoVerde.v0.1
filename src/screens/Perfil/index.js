@@ -26,6 +26,9 @@ const Perfil = () => {
   const handleNavSair = () => {
     navigation.navigate('Login');
   };
+  const handleNavPart = () => {
+    navigation.navigate('ParticipacoesConfirmadas');
+  };
   const handleGoBack = () => {
     navigation.goBack();
   };
@@ -69,22 +72,14 @@ const Perfil = () => {
           </View>
         </View>
 
-        <View style={estilos01.box2}>
-          <View style={{ flexDirection: "row", marginLeft: 17, marginTop: 20 }}>
-            <Image source={require("../../../assets/Pessoa1.png")} />
-            <Image
-              style={{ marginLeft: -20 }}
-              source={require("../../../assets/Pessoa2.png")}
-            />
-            <Image
-              style={{ marginLeft: -20 }}
-              source={require("../../../assets/Pessoa3.png")}
-            />
+        <TouchableOpacity
+          style={{ marginTop:15 }}
+          onPress={() => handleNavPart()}
+        >
+          <View style={estilos.botao}>
+            <Text style={{ color: 'white', margin: 10 }}>Minhas Participações</Text>
           </View>
-          <TouchableOpacity style={estilos01.box3}>
-          <Ionicons name="person-add-outline" size={24} color="white" />
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
 
         <Text
           style={{
@@ -272,9 +267,9 @@ const estilos01 = StyleSheet.create({
 
   },
   box2: {
-    flexDirection: "row",
-    alignSelf: "stretch",
-    justifyContent: "space-between",
+    
+    alignItems:'center',
+    justifyContent:'flex-start',
     backgroundColor: "rgba(25, 144, 51, 0.51)",
     marginTop: 20,
     borderRadius: 20,
