@@ -9,14 +9,11 @@ function AuthProvider({ children }) {
   const [username, setUsername] = useState({});
   const navigation = useNavigation();
 
-  function signIn(email, password, username) {
-    if (email !== "" && password !== "" && username !== "") {
+  function signIn(email, password) {
+    if (email !== "" && password !== "" ) {
       setUser({
         email: email,
         status: "ATIVO",
-      });
-      setUsername({
-        username: username,
       });
 
       navigation.navigate("Home");

@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required("Campo obrigatório"),
+  //username: yup.string().required("Campo obrigatório"),
   email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
   password: yup
     .string()
@@ -56,24 +56,6 @@ export default function Home() {
       <SafeAreaView>
         <ScrollView>
           <View style={styles.container}>
-            <Controller
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <Input
-                  containerStyle={{ width: "80%" }}
-                  style={{ color: "white" }}
-                  placeholder="Seu username"
-                  value={value}
-                  onChangeText={onChange}
-                />
-              )}
-              name="username"
-              defaultValue={username}
-            />
-            {errors.username && (
-              <Text style={{ color: "red" }}>{errors.username.message}</Text>
-            )}
-
             <Controller
               control={control}
               render={({ field: { value, onChange } }) => (
