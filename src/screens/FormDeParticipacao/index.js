@@ -20,35 +20,61 @@ const FormParticipacao = () => {
   const [doc, setDoc] = useState("");
   const [endereco, setEndereco] = useState("");
   const [restricao, setRestricao] = useState("");
+  const [errors, setErrors] = useState({
+    nome: "",
+    tel: "",
+    doc: "",
+    endereco: "",
+  });
 
   const { Cadastro } = useContext(FormContext);
 
   const navigation = useNavigation();
 
   const handleNavRevisar = () => {
+    // Limpa mensagens de erro anteriores
+    setErrors({
+      nome: "",
+      tel: "",
+      doc: "",
+      endereco: "",
+    });
+
+    let hasError = false;
+
     if (!nome || nome.trim() === "") {
-      Alert.alert("Erro", "Por favor, insira seu Nome Completo.");
-      return;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        nome: "Nome obrigatório",
+      }));
+      hasError = true;
     }
 
     if (!tel || !/^\d{11}$/.test(tel)) {
-      Alert.alert(
-        "Erro",
-        "Por favor, insira um Número para Contato válido no formato 00000000000."
-      );
-      return;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        tel: "Número de contato inválido",
+      }));
+      hasError = true;
     }
 
     if (!doc || !/^\d{11}$/.test(doc)) {
-      Alert.alert(
-        "Erro",
-        "Por favor, insira um Número de CPF válido no formato 00000000000."
-      );
-      return;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        doc: "CPF inválido",
+      }));
+      hasError = true;
     }
 
     if (!endereco || endereco.trim() === "") {
-      Alert.alert("Erro", "Por favor, insira seu Endereço Residencial.");
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        endereco: "Endereço obrigatório",
+      }));
+      hasError = true;
+    }
+
+    if (hasError) {
       return;
     }
 
@@ -77,59 +103,61 @@ const FormParticipacao = () => {
           <Text style={styles.textInput}>Nome Completo</Text>
 
           <View style={{ alignSelf: "stretch" }}>
-
             <TextInput
               style={styles.input}
               value={nome}
-              onChangeText={(text)=>setNome(text)}
+              onChangeText={(text) => setNome(text)}
               placeholder="Digite seu nome"
               placeholderTextColor="white"
             />
-
           </View>
+          {errors.nome && <Text style={styles.errorText}>{errors.nome}</Text>}
 
           <Text style={styles.textInput}>Número para Contato</Text>
           <TextInput
             style={styles.input}
             value={tel}
-            onChangeText={(text)=>setTel(text)}
+            onChangeText={(text) => setTel(text)}
             placeholder="(00)00000-0000"
             placeholderTextColor="white"
           />
+          {errors.tel && <Text style={styles.errorText}>{errors.tel}</Text>}
 
           <Text style={styles.textInput}>Número do CPF</Text>
           <TextInput
             style={styles.input}
             value={doc}
-            onChangeText={(text)=>setDoc(text)}
+            onChangeText={(text) => setDoc(text)}
             placeholder="000000000000"
             placeholderTextColor="white"
           />
+          {errors.doc && <Text style={styles.errorText}>{errors.doc}</Text>}
 
           <Text style={styles.textInput}>Endereço Residencial </Text>
           <TextInput
             style={styles.input}
             value={endereco}
-            onChangeText={(text)=>setEndereco(text)}
+            onChangeText={(text) => setEndereco(text)}
             placeholder="Q 00 conj 00 casa 00,  Cidade - DF"
             placeholderTextColor="white"
           />
+          {errors.endereco && (
+            <Text style={styles.errorText}>{errors.endereco}</Text>
+          )}
 
-          <Text style={styles.textInput}> Você tem alguma restrição dietética?</Text>
+          <Text style={styles.textInput}>
+            Você tem alguma restrição dietética?
+          </Text>
           <TextInput
             style={styles.input}
             value={restricao}
-            onChangeText={(text)=>setRestricao(text)}
+            onChangeText={(text) => setRestricao(text)}
             placeholder=""
             placeholderTextColor="white"
           />
         </View>
 
-        
-        <TouchableOpacity
-          style={styles.customButton}
-          onPress={handleNavRevisar}
-        >
+        <TouchableOpacity style={styles.customButton} onPress={handleNavRevisar}>
           <Text style={styles.customButtonText}>Participar</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -242,6 +270,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  errorText: {
+    color: "red",
+    marginLeft: 14,
+    fontSize: 15,
+    marginBottom: 8,
   },
 });
 
