@@ -125,38 +125,8 @@ const Login = () => {
         />
       </View>
 
-      <View style={{ margin: 10 }}>
-        <Text style={styles.Title1}>Últimas Ações </Text>
-      </View>
 
-      <View
-        style={{
-          backgroundColor: "rgba(255, 255, 255, 0.8        )",
-          width: 360,
-          height: 160,
-          borderRadius: 25,
-          alignItems: "center",
-        }}
-      >
-        <Image
-          source={require("../../../assets/retangulo.png")}
-          style={{
-            height: 80,
-            width: 344,
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 30,
-            marginTop: 10,
-          }}
-        />
-        <View style={{flexDirection: "row",marginTop:8}}>
-          <View style={{flexDirection: "row"}}>
-          <Image source={require('../../../assets/Pessoa1.png')}/>
-          <Text>Rafaela</Text>
-          </View>
-          <Text style={{width:226, height:80, marginLeft:15}}>Instituto Brasília Ambiental, vai unir educação ambiental e ação social.Esse ano, o projeto terá como palco o Parque Ecológico.</Text>
-        </View>
-      </View>
+
       </ScrollView>
     </SafeAreaView>
   );
